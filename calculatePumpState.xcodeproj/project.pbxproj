@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3CB8D9061BF88F7A00A94E71 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D9051BF88F7A00A94E71 /* main.cpp */; };
+		3CB8D9141BF8912F00A94E71 /* Evaporator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D9121BF8912F00A94E71 /* Evaporator.cpp */; };
+		3CB8D9181BF89C7F00A94E71 /* Formular.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D9161BF89C7F00A94E71 /* Formular.cpp */; };
+		3CE2E8F71BF8E8F500797F31 /* Absorber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2E8F51BF8E8F500797F31 /* Absorber.cpp */; };
+		3CE2E8FA1BF8E8FE00797F31 /* Condenser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2E8F81BF8E8FE00797F31 /* Condenser.cpp */; };
+		3CE2E8FD1BF8E90C00797F31 /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2E8FB1BF8E90C00797F31 /* Generator.cpp */; };
+		3CE2E9011BF9D3A300797F31 /* LiBrPump.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2E8FF1BF9D3A300797F31 /* LiBrPump.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,18 @@
 /* Begin PBXFileReference section */
 		3CB8D9021BF88F7A00A94E71 /* calculatePumpState */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = calculatePumpState; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB8D9051BF88F7A00A94E71 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3CB8D9121BF8912F00A94E71 /* Evaporator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Evaporator.cpp; sourceTree = "<group>"; };
+		3CB8D9131BF8912F00A94E71 /* Evaporator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Evaporator.hpp; sourceTree = "<group>"; };
+		3CB8D9161BF89C7F00A94E71 /* Formular.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Formular.cpp; sourceTree = "<group>"; };
+		3CB8D9171BF89C7F00A94E71 /* Formular.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Formular.hpp; sourceTree = "<group>"; };
+		3CE2E8F51BF8E8F500797F31 /* Absorber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Absorber.cpp; sourceTree = "<group>"; };
+		3CE2E8F61BF8E8F500797F31 /* Absorber.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Absorber.hpp; sourceTree = "<group>"; };
+		3CE2E8F81BF8E8FE00797F31 /* Condenser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Condenser.cpp; sourceTree = "<group>"; };
+		3CE2E8F91BF8E8FE00797F31 /* Condenser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Condenser.hpp; sourceTree = "<group>"; };
+		3CE2E8FB1BF8E90C00797F31 /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
+		3CE2E8FC1BF8E90C00797F31 /* Generator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Generator.hpp; sourceTree = "<group>"; };
+		3CE2E8FF1BF9D3A300797F31 /* LiBrPump.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LiBrPump.cpp; sourceTree = "<group>"; };
+		3CE2E9001BF9D3A300797F31 /* LiBrPump.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LiBrPump.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +75,69 @@
 		3CB8D9041BF88F7A00A94E71 /* calculatePumpState */ = {
 			isa = PBXGroup;
 			children = (
+				3CE2E8FE1BF9D38900797F31 /* LiBrPump */,
+				3CB8D9151BF89C6200A94E71 /* formular */,
+				3CB8D9111BF8905000A94E71 /* generator */,
+				3CB8D9101BF8902800A94E71 /* condenser */,
+				3CB8D90E1BF8900E00A94E71 /* absorber */,
+				3CB8D90C1BF88FCB00A94E71 /* evaporator */,
 				3CB8D9051BF88F7A00A94E71 /* main.cpp */,
 			);
 			path = calculatePumpState;
+			sourceTree = "<group>";
+		};
+		3CB8D90C1BF88FCB00A94E71 /* evaporator */ = {
+			isa = PBXGroup;
+			children = (
+				3CB8D9121BF8912F00A94E71 /* Evaporator.cpp */,
+				3CB8D9131BF8912F00A94E71 /* Evaporator.hpp */,
+			);
+			name = evaporator;
+			sourceTree = "<group>";
+		};
+		3CB8D90E1BF8900E00A94E71 /* absorber */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2E8F51BF8E8F500797F31 /* Absorber.cpp */,
+				3CE2E8F61BF8E8F500797F31 /* Absorber.hpp */,
+			);
+			name = absorber;
+			sourceTree = "<group>";
+		};
+		3CB8D9101BF8902800A94E71 /* condenser */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2E8F81BF8E8FE00797F31 /* Condenser.cpp */,
+				3CE2E8F91BF8E8FE00797F31 /* Condenser.hpp */,
+			);
+			name = condenser;
+			sourceTree = "<group>";
+		};
+		3CB8D9111BF8905000A94E71 /* generator */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2E8FB1BF8E90C00797F31 /* Generator.cpp */,
+				3CE2E8FC1BF8E90C00797F31 /* Generator.hpp */,
+			);
+			name = generator;
+			sourceTree = "<group>";
+		};
+		3CB8D9151BF89C6200A94E71 /* formular */ = {
+			isa = PBXGroup;
+			children = (
+				3CB8D9161BF89C7F00A94E71 /* Formular.cpp */,
+				3CB8D9171BF89C7F00A94E71 /* Formular.hpp */,
+			);
+			name = formular;
+			sourceTree = "<group>";
+		};
+		3CE2E8FE1BF9D38900797F31 /* LiBrPump */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2E8FF1BF9D3A300797F31 /* LiBrPump.cpp */,
+				3CE2E9001BF9D3A300797F31 /* LiBrPump.hpp */,
+			);
+			name = LiBrPump;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +196,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB8D9141BF8912F00A94E71 /* Evaporator.cpp in Sources */,
+				3CE2E9011BF9D3A300797F31 /* LiBrPump.cpp in Sources */,
+				3CE2E8FA1BF8E8FE00797F31 /* Condenser.cpp in Sources */,
+				3CE2E8F71BF8E8F500797F31 /* Absorber.cpp in Sources */,
+				3CE2E8FD1BF8E90C00797F31 /* Generator.cpp in Sources */,
+				3CB8D9181BF89C7F00A94E71 /* Formular.cpp in Sources */,
 				3CB8D9061BF88F7A00A94E71 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +321,7 @@
 				3CB8D90B1BF88F7A00A94E71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
