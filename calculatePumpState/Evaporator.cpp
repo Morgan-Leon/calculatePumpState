@@ -15,18 +15,18 @@
     }
     
     Evaporator::Evaporator(double Twai,double Twao,double deltaT_a){
-        this->Twai = Twai;
-        this->Twao = Twao;
-        this->deltaT_a = deltaT_a;
+        this->Twei = Twai;
+        this->Tweo = Twao;
+        this->deltaT_e = deltaT_a;
         T1i = calT1i();
         P1i = calP1i(T1i);
         
     }
     
     double Evaporator::calT1i(){
-        return Twao - deltaT_a;
+        return Tweo - deltaT_e;
     }
-    
+
     /*
      三步计算水的饱和蒸汽压力：
         1、将设施温度换算为开氏温度；
@@ -40,12 +40,12 @@
         
     }
 
-    double Evaporator::getTwai(){
-        return Twai;
+    double Evaporator::getTwei(){
+        return Twei;
     }
     
-    double Evaporator::getTwao(){
-        return Twao;
+    double Evaporator::getTweo(){
+        return Tweo;
     }
     
     double Evaporator::getT1i(){
@@ -73,10 +73,10 @@
     }
     
     void Evaporator::printEvaporator(){
-        cout << "蒸发器状态参数如下所示:" <<endl;
-        cout << "   Twai = "<<Twai<<"˚C"<<endl;
-        cout << "   Twao = "<<Twao<<"˚C"<<endl;
-        cout << "   ∆Te  = " <<deltaT_a<<"˚C"<<endl;
-        cout << "   T1i  = " <<T1i <<"˚C"<<endl;
-        cout << "   P1i  = " <<P1i <<"kPa"<<endl;
+        cout << "\t蒸发器状态参数如下所示:" <<endl;
+        cout << "\t    Twai = "<<Twei<<"˚C"<<endl;
+        cout << "\t    Twao = "<<Tweo<<"˚C"<<endl;
+        cout << "\t    ∆Te  = " <<deltaT_e<<"˚C"<<endl;
+        cout << "\t    T1i  = " <<T1i <<"˚C"<<endl;
+        cout << "\t    P1i  = " <<P1i <<"kPa"<<endl;
     }

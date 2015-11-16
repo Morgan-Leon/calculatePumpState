@@ -7,15 +7,14 @@
 //
 
 #include <iostream>
-#include "Evaporator.cpp"
+#include "LiBrPump.hpp"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    Evaporator e;
+    LiBrPump p;
     
-    e.printEvaporator();
     return 0;
 }

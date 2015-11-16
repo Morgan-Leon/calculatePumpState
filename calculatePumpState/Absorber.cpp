@@ -11,9 +11,24 @@
 /*
  溴化锂吸收式热泵的吸收器
  */
-class Absorber {
+
+double Absorber::calTwao(){
+    return this->Twai + this->deltaTw1;
+}
+
+Absorber::Absorber(){
     
-private:
-    double Twai = 50;
-    double deltaTw1 = 10.8;
-};
+}
+
+Absorber::Absorber(double Twai,double deltaTw1){
+    this->Twai = Twai;
+    this->deltaTw1 = deltaTw1;
+    this->Twao = calTwao();
+}
+
+void Absorber::printAbsorber(){
+    cout << "\t吸收器状态参数如下所示:\n";
+    cout << "\t    Twai = "<<Twai<<"˚C"<<endl;
+    cout << "\t    Twao = "<<Twao<<"˚C"<<endl;
+    cout << "\t    ∆Tw1 = "<<deltaTw1<<"˚C"<<endl;
+}

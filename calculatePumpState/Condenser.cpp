@@ -9,6 +9,3 @@
 #include "Condenser.hpp"
 
 
-class Condenser{
-
-};

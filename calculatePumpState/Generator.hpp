@@ -11,4 +11,8 @@
 
 #include <stdio.h>
 
+class Generator{
+    
+};
+
 #endif /* Generator_hpp */

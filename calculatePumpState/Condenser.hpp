@@ -11,4 +11,8 @@
 
 #include <stdio.h>
 
+class Condenser{
+    
+};
+
 #endif /* Condenser_hpp */

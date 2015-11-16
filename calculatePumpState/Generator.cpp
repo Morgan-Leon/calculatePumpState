@@ -9,6 +9,3 @@
 #include "Generator.hpp"
 
 
-class Generator{
-    
-};

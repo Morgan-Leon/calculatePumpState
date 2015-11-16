@@ -10,30 +10,37 @@
 
 
 
-class LiBrPump{
-private:
-    //thermal load : 热负荷Q（KW）
-    double thermalLoad = 5000;
-    //tdr: Temperature difference ratio 温差比
-    //吸收器与冷凝器的温差比
-    double a_c_tdr = 1.3/1.1;
+LiBrPump::LiBrPump(){
     
-    //驱动热源温度 Twgi = 150˚C
-    double Twgi = 150;
+    this->deltaT_w = calDeltaT_w();
+    this->deltaT_w1 = calDeltaT_w1();
+    this->deltaT_w2 = calDeltaT_w2();
     
-    //低品质热源温度：
-    double Twei =45,Tweo = 30;
-    //所制取热水温度：
-    double Twco = 70,Twai = 50;
+    this->e = Evaporator(Twei,Tweo,deltaT_e);
+    cout << "蒸发器构建成功" << endl;
+    e.printEvaporator();
     
-    Evaporator e;
+    this->a = Absorber(Twai, deltaT_w1);
+    cout << "\n吸收器构建成功" <<endl;
+    a.printAbsorber();
     
-    
-    
-    
-public:
-    
+}
 
-    
-    
+double LiBrPump::calDeltaT_w(){
+    return Twco - Twai;
+}
+
+double LiBrPump::calDeltaT_w1(){
+    return  deltaT_w*a_tdr;
+};
+
+double LiBrPump::calDeltaT_w2(){
+    return deltaT_w*c_tdr;
+};
+
+void LiBrPump::set_tdrAC(double a,double b){
+    this->a_tdr = a/(a+b);
+    this->c_tdr = b/(a+b);
+    this->deltaT_w1 = calDeltaT_w1();
+    this->deltaT_w2 = calDeltaT_w2();
 };
