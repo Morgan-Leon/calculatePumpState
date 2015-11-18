@@ -42,6 +42,22 @@ double lgsvp(double satsaturationTemperatureH2O_K){
     return lgsvp;
 }
 
+/*计算水的饱和温度 公式来源《蒸发过程饱和水蒸气对应参数的计算方程》-高俊
+ Calculate saturated vapor temperature(svp) of H2O.
+ 适用于2kpa- 1500kpa 相对误差≤0.3%
+ 按此公式与上述压力计算公式反算 每个温度值与标准值几乎都相差0.4，遂在计算末加之
+ */
+double satsaturationTemperatureH2O(double satsaturationPressureH2O_kPa){
+    double t = 0.0000000;
+    double p = satsaturationPressureH2O_kPa;
+    double c[] = {6.004553,15.89247,-0.1723261,0.3940772,-4.631586e-2,3.01707e-3};
+    for (int i = 0; i < 6; i++) {
+        t += c[i]*pow(log(p), i);
+    }
+    
+    return t+0.4;
+}
+
 
 /*计算溴化锂的露点温度(Calculate dew temperature of LiBr)
  
