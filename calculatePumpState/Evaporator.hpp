@@ -41,11 +41,13 @@ private:
     double H1i,H1o;
     double X1i,X1o;
     
+    double calT1i();
+    double calP1i(double T1i_C);
+
+    
 public:
     Evaporator();
     Evaporator(double Twei,double Tweo,double deltaT_e);
-    double calT1i();
-    double calP1i(double T1i_C);
     double getT1i();
     double getT1o();
     double getTwei();

@@ -20,7 +20,7 @@ LiBrPump::LiBrPump(){
     cout << "蒸发器构建成功" << endl;
     e.printEvaporator();
     
-    this->a = Absorber(Twai, deltaT_w1);
+    this->a = Absorber(Twai, deltaT_w1,6.000);
     cout << "\n吸收器构建成功" <<endl;
     a.printAbsorber();
     

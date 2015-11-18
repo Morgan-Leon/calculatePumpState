@@ -83,6 +83,10 @@ double dewTLiBr(double satsaturationTemperatureH2O_C, double concentrationOfLiBr
  30% < concentrationOfLiBrSolution < 75%
  
  1千卡(kcal)=1大卡=4.184千焦(kJ)
+ 测试数据：
+ t = 45.83
+ x = 58.998
+ h = 282.773
  */
 double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentrationOfLiBrSolution){
     double a[] = {3.22313e2,3.83413e2,-2.65438e3,2.87262e3};
@@ -94,16 +98,15 @@ double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentratio
     double h;
     /*
      sum1 = ∑ax^n
+     
      */
     for (int i=0; i<4; i++) {
         sum1 += a[i]*pow(x,i);
         sum2 += b[i]*pow(x, i);
-        if (i<3) {
-            sum3 += c[i]*pow(x,i);
-        }
+        sum3 += c[i]*pow(x, i);
     }
     
-    h = sum1 + sum2*t  + (sum3 + pow(c[3],3)*x)*t*t;
+    h = sum1 + sum2*t + sum3*t*t;
     
     return  h;
     
