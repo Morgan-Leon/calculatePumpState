@@ -20,6 +20,8 @@
         this->deltaT_e = deltaT_a;
         T1i = calT1i();
         P1i = calP1i(T1i);
+        P1o = P1i;
+        T1o = T1i;
         
     }
     
@@ -79,4 +81,6 @@
         cout << "\t    ∆Te  = " <<deltaT_e<<"˚C"<<endl;
         cout << "\t    T1i  = " <<T1i <<"˚C"<<endl;
         cout << "\t    P1i  = " <<P1i <<"kPa"<<endl;
+        cout << "\t    T1o  = " <<T1o <<"˚C"<<endl;
+        cout << "\t    P1o  = " <<P1o <<"kPa"<<endl;
     }

@@ -42,6 +42,9 @@ private:
     //二次水在冷凝器中的升温程度
     double deltaT_w2;
     
+    //蒸发器与吸收器间的压力差(13.3-65)Pa
+    double deltaP_e = 25;
+    
     Evaporator e;
     Absorber a;
     Condenser c;
@@ -50,6 +53,9 @@ private:
     double calDeltaT_w();
     double calDeltaT_w1();
     double calDeltaT_w2();
+    
+    double calPressrueOfAbsorber(double p1o,double deltaP_e);
+    
     
     
 public:

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "Formular.hpp"
 
 using namespace std;
 
@@ -44,11 +45,21 @@ private:
     
     double calT2o();
     
+    double calP2o();
+    
+    double calX2o();
+    
+    double calX6i();
+    
+    double calH2o();
+    
+    double calH6i();
+    
 public:
     
     Absorber();
     
-    Absorber(double Twai,double deltaTw1,double deltaT_a);
+    Absorber(double Twai,double deltaTw1,double deltaT_a,double p_a);
     
     void setDeltaT_a();
     
