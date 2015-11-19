@@ -34,4 +34,7 @@ double dewTLiBr(double satsaturationTemperatureH2O_C, double concentrationOfLiBr
 //计算溴化锂溶液的焓值
 double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentrationOfLiBrSolution);
 
+//计算溴化锂溶液的浓度
+double _concentration_LiBrSolution(double solutionTemperatureLiBr_C,double pressure_kPa);
+
 #endif /* Formular_hpp */

@@ -127,3 +127,33 @@ double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentratio
     return  h;
     
 }
+
+/*
+ 已知溶液的温度t和压强P,确定溶液的浓度X%,平均相对误差0.76%，最大相对误差1.749%
+ t----压强为P时，溴化锂溶液的饱和温度，˚C
+ t1----压强为P时，对应水的饱和温度，˚C，即需要先根据P求出水的饱和温度
+ 10˚ ≤ t ≤ 130˚C
+ 2kpa ≤ P ≤ 1500kpa
+ */
+double _concentration_LiBrSolution(double solutionTemperatureLiBr_C,double pressure_kPa){
+    double t = solutionTemperatureLiBr_C;
+    double t1 = satsaturationTemperatureH2O(pressure_kPa);
+    double a[] = {0.31057,-1.282e-2,-1.7312e-4,5.3303e-7};
+    double b[] = {1.232e-2,3.846e-4,-7.1457e-8,-5.73e-9};
+    double c[] = {-1.9166e-4,-3.334e-6,5.3123e-8,-3.6012e-10,1.0257e-12};
+    double d[] = {1.6386e-6,-2.16e-8,1.505e-10,-4.678e-13};
+    double sum1 = 0.000000,sum2= 0.000000,sum3 = c[4]*pow(t1, 4),sum4 = 0.000000;
+    
+    double x = 0.0000000;
+    
+    for (int i = 0; i < 4; i++) {
+        sum1 += a[i] * pow(t1, i);
+        sum2 += b[i] * pow(t1, i);
+        sum3 += c[i] * pow(t1, i);
+        sum4 += d[i] * pow(t1, i);
+    }
+    
+    x = sum1 + sum2*t + sum3*t*t + sum4*t*t*t;
+    
+    return x * 100;
+}
