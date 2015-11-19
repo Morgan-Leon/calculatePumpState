@@ -20,6 +20,14 @@ double Absorber::calT2o(){
     return Twao + deltaT_a;
 }
 
+double Absorber::calX2o(){
+    return _concentration_LiBrSolution(T2o, P2o);
+}
+
+double Absorber::calX6i(){
+    return _concentration_LiBrSolution(T6i, P6i);
+}
+
 double Absorber::calH2o(){
     return enthalpyLiBrSolution(T2o, X2o);
 }
@@ -41,6 +49,10 @@ Absorber::Absorber(double Twai,double deltaTw1,double deltaT_a,double p_a){
     this->P2o = p_a;
     this->P6i = p_a;
     
+    this->X2o = calX2o();
+    
+    this->H2o = calH2o();
+    
     
 }
 
@@ -52,4 +64,6 @@ void Absorber::printAbsorber(){
     cout << "\t    T2o = " <<T2o<<"˚C" <<endl;
     cout << "\t    P2o = " <<P2o<<"kPa" <<endl;
     cout << "\t    P6i = " <<P6i<<"kPa" <<endl;
+    cout << "\t    X2o = " <<X2o<<"%" <<endl;
+    cout << "\t    H2o = " <<H2o<<"kJ/kg" <<endl;
 }
