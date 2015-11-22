@@ -63,7 +63,8 @@ void Absorber::printAbsorber(){
     cout << "\t    ∆Tw1 = "<<deltaTw1<<"˚C"<<endl;
     cout << "\t    T2o = " <<T2o<<"˚C" <<endl;
     cout << "\t    P2o = " <<P2o<<"kPa" <<endl;
-    cout << "\t    P6i = " <<P6i<<"kPa" <<endl;
-    cout << "\t    X2o = " <<X2o<<"%" <<endl;
     cout << "\t    H2o = " <<H2o<<"kJ/kg" <<endl;
+    cout << "\t    X2o = " <<X2o<<"%" <<endl;
+    cout << "\t    P6i = " <<P6i<<"kPa" <<endl;
+
 }
