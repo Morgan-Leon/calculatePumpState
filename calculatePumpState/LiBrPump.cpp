@@ -26,6 +26,10 @@ LiBrPump::LiBrPump(){
     cout << "\n吸收器构建成功" <<endl;
     a.printAbsorber();
     
+    this->c = Condenser(Twco,deltaT_c);
+    cout <<"\n冷凝器构建成功" <<endl;
+    c.printCondenser();
+    
 }
 
 double LiBrPump::calDeltaT_w(){

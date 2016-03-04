@@ -10,6 +10,8 @@
 #define Condenser_hpp
 
 #include <stdio.h>
+#include <iostream>
+#include "Formular.hpp"
 
 /*
  溴化锂吸收式热泵的冷凝器（Condenser）。
@@ -23,6 +25,32 @@
 
 class Condenser{
     
+private:
+    //冷凝器出口水温要略高于二次水出口，其大小由冷凝管决定（3-5˚C）
+    double deltaT_c = 5;
+    
+    double Twco = 70;
+    
+    double T3o,P3o,H3o,X3o;
+    
+    double calT3o();
+    
+    double calX3o();
+    
+    double calH3o(double t);
+    
+    double calP3o(double t);
+
+public:
+    Condenser();
+    
+    Condenser(double Twco, double deltaT_c);
+    
+    double setDeltaT_C(double);
+    
+    double setTwco(double);
+    
+    void printCondenser();
 };
 
 #endif /* Condenser_hpp */
