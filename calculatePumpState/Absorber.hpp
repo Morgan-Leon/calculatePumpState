@@ -49,6 +49,8 @@ private:
     
     double calX2o();
     
+    double calT6i();
+    
     double calX6i();
     
     double calH2o();
@@ -59,7 +61,7 @@ public:
     
     Absorber();
     
-    Absorber(double Twai,double deltaTw1,double deltaT_a,double p_a);
+    Absorber(double Twai,double deltaTw1,double deltaT_a,double p_a,double deltaX_a);
     
     void setDeltaT_a();
     

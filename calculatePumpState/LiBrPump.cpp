@@ -22,7 +22,7 @@ LiBrPump::LiBrPump(){
     
     double p_a = calPressrueOfAbsorber(e.getP1o(), this->deltaP_e);
     //默认吸收器与冷凝器温度差为6摄氏度
-    this->a = Absorber(Twai, deltaT_w1,6.000,p_a);
+    this->a = Absorber(Twai, deltaT_w1,6.000,p_a, deltaX_a);
     cout << "\n吸收器构建成功" <<endl;
     a.printAbsorber();
     

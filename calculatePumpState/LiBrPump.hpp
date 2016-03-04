@@ -45,6 +45,13 @@ private:
     //蒸发器与吸收器间的压力差(13.3-65)Pa
     double deltaP_e = 25;
     
+    //吸收器进口浓溶液与稀溶液间的浓度差(XH-XL) = 0.03至0.06
+    double deltaX_a = 0.04;
+    
+    
+    //冷凝器出口水温要略高于二次水出口，其大小由冷凝管决定（3-5˚C）
+    double deltaT_c = 5;
+    
     Evaporator e;
     Absorber a;
     Condenser c;

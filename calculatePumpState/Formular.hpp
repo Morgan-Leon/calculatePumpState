@@ -26,7 +26,7 @@ double conversion_P_lgmmHg2kPa(double lgp);
 double lgsvp(double satsaturationTemperatureH2O);
 
 //已知饱和水蒸汽压强 计算温度
-double satsaturationTemperatureH2O(double satsaturationPressureH2O_kPa);
+double saturationTemperatureH2O(double satsaturationPressureH2O_kPa);
 
 //千卡换算千焦
 double conversionQ_kCal2kJ(double kCal);

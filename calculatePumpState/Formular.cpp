@@ -47,7 +47,7 @@ double lgsvp(double satsaturationTemperatureH2O_K){
  适用于2kpa- 1500kpa 相对误差≤0.3%
  按此公式与上述压力计算公式反算 每个温度值与标准值几乎都相差0.4，遂在计算末加之
  */
-double satsaturationTemperatureH2O(double satsaturationPressureH2O_kPa){
+double saturationTemperatureH2O(double satsaturationPressureH2O_kPa){
     double t = 0.0000000;
     double p = satsaturationPressureH2O_kPa;
     double c[] = {6.004553,15.89247,-0.1723261,0.3940772,-4.631586e-2,3.01707e-3};
@@ -181,7 +181,7 @@ double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentratio
  */
 double _concentration_LiBrSolution(double solutionTemperatureLiBr_C,double pressure_kPa){
     double t = solutionTemperatureLiBr_C;
-    double t1 = satsaturationTemperatureH2O(pressure_kPa);
+    double t1 = saturationTemperatureH2O(pressure_kPa);
     double a[] = {0.31057,-1.282e-2,-1.7312e-4,5.3303e-7};
     double b[] = {1.232e-2,3.846e-4,-7.1457e-8,-5.73e-9};
     double c[] = {-1.9166e-4,-3.334e-6,5.3123e-8,-3.6012e-10,1.0257e-12};
