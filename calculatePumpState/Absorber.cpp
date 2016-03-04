@@ -58,13 +58,21 @@ Absorber::Absorber(double Twai,double deltaTw1,double deltaT_a,double p_a){
 
 void Absorber::printAbsorber(){
     cout << "\t吸收器状态参数如下所示:\n";
+    
+    cout << "\t  已知:" <<endl;
     cout << "\t    Twai = "<<Twai<<"˚C"<<endl;
     cout << "\t    Twao = "<<Twao<<"˚C"<<endl;
+    
+    cout << "\t  假定:" <<endl;
     cout << "\t    ∆Tw1 = "<<deltaTw1<<"˚C"<<endl;
+    
+    cout << "\t  求得:" <<endl;
     cout << "\t    T2o = " <<T2o<<"˚C" <<endl;
     cout << "\t    P2o = " <<P2o<<"kPa" <<endl;
     cout << "\t    H2o = " <<H2o<<"kJ/kg" <<endl;
     cout << "\t    X2o = " <<X2o<<"%" <<endl;
+    
+    
     cout << "\t    P6i = " <<P6i<<"kPa" <<endl;
 
 }

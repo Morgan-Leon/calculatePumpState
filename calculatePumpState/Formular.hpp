@@ -28,6 +28,15 @@ double lgsvp(double satsaturationTemperatureH2O);
 //已知饱和水蒸汽压强 计算温度
 double satsaturationTemperatureH2O(double satsaturationPressureH2O_kPa);
 
+//千卡换算千焦
+double conversionQ_kCal2kJ(double kCal);
+
+//水的焓值（kJ/kg）
+double _H2O_enthalpy(double temperatureH2O_C);
+
+//水蒸气的焓值
+double _H2OVapor_enthalpy(double temperatureH2O_C);
+
 //计算溴化锂溶液露点温度
 double dewTLiBr(double satsaturationTemperatureH2O_C, double concentrationOfLiBrSolution);
 

@@ -76,9 +76,15 @@
     
     void Evaporator::printEvaporator(){
         cout << "\t蒸发器状态参数如下所示:" <<endl;
-        cout << "\t    Twai = "<<Twei<<"˚C"<<endl;
-        cout << "\t    Twao = "<<Tweo<<"˚C"<<endl;
+        
+        cout << "\t  已知:" <<endl;
+        cout << "\t    Twei = "<<Twei<<"˚C"<<endl;
+        cout << "\t    Tweo = "<<Tweo<<"˚C"<<endl;
+        
+        cout << "\t  假定:" <<endl;
         cout << "\t    ∆Te  = " <<deltaT_e<<"˚C"<<endl;
+        
+        cout << "\t  求得:" <<endl;
         cout << "\t    T1i  = " <<T1i <<"˚C"<<endl;
         cout << "\t    P1i  = " <<P1i <<"kPa"<<endl;
         cout << "\t    T1o  = " <<T1o <<"˚C"<<endl;

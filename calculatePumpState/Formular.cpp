@@ -54,8 +54,52 @@ double satsaturationTemperatureH2O(double satsaturationPressureH2O_kPa){
     for (int i = 0; i < 6; i++) {
         t += c[i]*pow(log(p), i);
     }
-    
     return t+0.4;
+}
+
+/*
+ #06
+ 换算：1千卡 = 4.1858千焦
+ */
+double conversionQ_kCal2kJ(double kCal){
+    return kCal * 4.1858;
+}
+
+
+/*
+ #07
+ 计算饱和水的气化潜热(latent heat of vaporization)
+ r = 597.34 - 0.555t1 - 0.2389 * 10^y
+ y = 5.1463 - 1540/(t1+273.16)
+ 结果转化为kJ
+ t1 为压力p时饱和水蒸气的温度，可利用#05计算
+ */
+double _H2O_latentHeatOfVaporization(double saturationTemperatureH2O_C){
+    
+    double t1 = saturationTemperatureH2O_C;
+    double y = 5.1463 - 1540/(t1+273.16);
+    double r = (597.34 - 0.555 * t1 - 0.2389 * pow(10, y))*4.1858;
+    cout << "\t温度为" << t1 << "时水的气化潜热r = " << r << endl;
+    return r;
+}
+
+/*
+ #08
+ 计算水的焓值: h1 = t1 + 100 (kcal/kg)
+ t1为水的温度（˚C）
+ 结果用公式6换算成千焦
+ */
+double _H2O_enthalpy(double temperatureH2O_C){
+    return conversionQ_kCal2kJ(temperatureH2O_C + 100.00);
+}
+
+/*
+ #09
+ 计算水蒸气的焓值：h2 = h1 + r
+ r为饱和水的气化潜热
+ */
+double _H2OVapor_enthalpy(double temperatureH2O_C){
+    return _H2O_enthalpy(temperatureH2O_C) + _H2O_latentHeatOfVaporization(temperatureH2O_C);
 }
 
 
