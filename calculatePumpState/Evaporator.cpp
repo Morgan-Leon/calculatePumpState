@@ -14,15 +14,23 @@
         
     }
     
-    Evaporator::Evaporator(double Twai,double Twao,double deltaT_a){
-        this->Twei = Twai;
-        this->Tweo = Twao;
-        this->deltaT_e = deltaT_a;
+    Evaporator::Evaporator(double Twei,double Tweo,double deltaT_e){
+        this->Twei = Twei;
+        this->Tweo = Tweo;
+        this->deltaT_e = deltaT_e;
         T1i = calT1i();
         P1i = calP1i(T1i);
         P1o = P1i;
+        //此处令蒸发器入口温度等于蒸发器出口温度
+        //假设水的焓值升高只来自于水物态变化即蒸发吸热
         T1o = T1i;
+        H1i = calH1i(T1i);
+        H1o = calH1o(T1o);
         
+        //此处为水
+        X1i = 0;
+        //此处为水蒸气
+        X1o = 0;
     }
     
     double Evaporator::calT1i(){
@@ -40,6 +48,20 @@
         double lgP1i = lgsvp(T1i_K);
         return conversion_P_lgmmHg2kPa(lgP1i);
         
+    }
+
+    /*
+     计算水的焓值
+     */
+    double Evaporator::calH1i(double T1i_C){
+        return _H2O_enthalpy(T1i_C);
+    }
+
+    /*
+     计算水蒸气的焓值
+     */
+    double Evaporator::calH1o(double T1o_C){
+        return _H2OVapor_enthalpy(T1o_C);
     }
 
     double Evaporator::getTwei(){
@@ -65,7 +87,16 @@
     double Evaporator::getP1o(){
         return P1o;
     }
-    
+
+    double Evaporator::getH1i(){
+        return H1i;
+    }
+
+    double Evaporator::getH1o(){
+        return H1o;
+    }
+
+
     double Evaporator::getX1i(){
         return X1i;
     }
@@ -87,6 +118,10 @@
         cout << "\t  求得:" <<endl;
         cout << "\t    T1i  = " <<T1i <<"˚C"<<endl;
         cout << "\t    P1i  = " <<P1i <<"kPa"<<endl;
+        cout << "\t    H1i  = " <<H1i <<"kJ/kg"<<endl;
+        cout << "\t    X1i  = " <<X1i <<"%"<<endl;
         cout << "\t    T1o  = " <<T1o <<"˚C"<<endl;
         cout << "\t    P1o  = " <<P1o <<"kPa"<<endl;
+        cout << "\t    H1o  = " <<H1o <<"kJ/kg"<<endl;
+        cout << "\t    X1o  = " <<X1o <<"%"<<endl;
     }

@@ -43,6 +43,8 @@ private:
     
     double calT1i();
     double calP1i(double T1i_C);
+    double calH1i(double);
+    double calH1o(double);
 
     
 public:
@@ -54,6 +56,8 @@ public:
     double getTweo();
     double getP1i();
     double getP1o();
+    double getH1i();
+    double getH1o();
     double getX1i();
     double getX1o();
     
