@@ -50,6 +50,10 @@ public:
     
     double setTwco(double);
     
+    double getT3o();
+    
+    double getP3o();
+    
     void printCondenser();
 };
 

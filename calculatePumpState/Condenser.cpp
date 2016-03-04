@@ -40,6 +40,14 @@ double Condenser::setTwco(double Twco){
     return Twco;
 }
 
+double Condenser::getP3o(){
+    return this->P3o;
+}
+
+double Condenser::getT3o(){
+    return this->T3o;
+}
+
 void Condenser::printCondenser(){
     
     cout << "\t冷凝器状态参数如下所示:" <<endl;

@@ -61,6 +61,14 @@ double Absorber::calH6i(){
     return enthalpyLiBrSolution(T6i, X6i);
 }
 
+double Absorber::getX2o(){
+    return this->X2o;
+}
+
+double Absorber::getX6i(){
+    return this->X6i;
+}
+
 void Absorber::printAbsorber(){
     cout << "\t吸收器状态参数如下所示:\n";
     

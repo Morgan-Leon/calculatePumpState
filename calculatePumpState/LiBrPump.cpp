@@ -30,6 +30,11 @@ LiBrPump::LiBrPump(){
     cout <<"\n冷凝器构建成功" <<endl;
     c.printCondenser();
     
+    //构造蒸发器需要吸收器入口温度浓度和冷凝器出口温度
+    this->g = Generator(c.getT3o(),c.getP3o(),a.getX2o(),a.getX6i());
+    cout <<"\n发生器构建成功" <<endl;
+    g.printGenerator();
+    
 }
 
 double LiBrPump::calDeltaT_w(){

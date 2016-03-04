@@ -67,6 +67,10 @@ public:
     
     void printAbsorber();
     
+    double getX6i();
+    
+    double getX2o();
+    
 };
 
 #endif /* Absorber_hpp */
