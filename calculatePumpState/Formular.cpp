@@ -91,7 +91,7 @@ double _H2O_latentHeatOfVaporization(double saturationTemperatureH2O_C){
  结果用公式6换算成千焦
  */
 double _H2O_enthalpy(double temperatureH2O_C){
-    return conversionQ_kCal2kJ(temperatureH2O_C + 100.00);
+    return conversionQ_kCal2kJ(temperatureH2O_C);
 }
 
 /*
@@ -121,11 +121,8 @@ double _H2OHeat_enthalpy(double saturationTemperatureH2O_C, double saturationTem
     double Cp = 0.46;
     double t = saturationTemperatureLiBr_C;
     double t1 = saturationTemperatureH2O_C;
-    double r = _H2O_latentHeatOfVaporization(t1);
-    double h1 = t1 + 100;
-    double h2 = h1 + r;
-    double h = h2 + Cp * (t - t1);
-    h = conversionQ_kCal2kJ(h);
+    double h2 = _H2OVapor_enthalpy(saturationTemperatureH2O_C);
+    double h = h2 + conversionQ_kCal2kJ(Cp * (t - t1));
     return h;
 }
 
@@ -226,7 +223,7 @@ double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentratio
     
     h = sum1 + sum2*t + sum3*t*t;
     
-    h = conversionQ_kCal2kJ(h);
+//    h = conversionQ_kCal2kJ(h);
     
     return  h;
 }
