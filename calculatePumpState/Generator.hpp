@@ -43,6 +43,9 @@ private:
     double T4o,P4o,H4o,X4o;
     double T5i,P5i,H5i,X5i;
     
+    double calT4wo(double,double);
+    double calH4wo(double saturationTemperatureH2O_C,double saturationTemperatureLiBr_C);
+    
     double calT4o(double,double);
     double calT5i(double,double);
     

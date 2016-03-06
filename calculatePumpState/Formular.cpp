@@ -59,10 +59,10 @@ double saturationTemperatureH2O(double satsaturationPressureH2O_kPa){
 
 /*
  #06
- 换算：1千卡 = 4.1858千焦
+ 换算：1千卡 = 4.184千焦
  */
 double conversionQ_kCal2kJ(double kCal){
-    return kCal * 4.1858;
+    return kCal * 4.184;
 }
 
 
@@ -78,7 +78,8 @@ double _H2O_latentHeatOfVaporization(double saturationTemperatureH2O_C){
     
     double t1 = saturationTemperatureH2O_C;
     double y = 5.1463 - 1540/(t1+273.16);
-    double r = (597.34 - 0.555 * t1 - 0.2389 * pow(10, y))*4.1858;
+    double r = (597.34 - 0.555 * t1 - 0.2389 * pow(10, y));
+    r = conversionQ_kCal2kJ(r);
     cout << "\t温度为" << t1 << "时水的气化潜热r = " << r << endl;
     return r;
 }
@@ -95,11 +96,37 @@ double _H2O_enthalpy(double temperatureH2O_C){
 
 /*
  #09
- 计算水蒸气的焓值：h2 = h1 + r
+ 计算水蒸气的焓值：h2 = h1 + r (kJ/kg)
  r为饱和水的气化潜热
  */
 double _H2OVapor_enthalpy(double temperatureH2O_C){
     return _H2O_enthalpy(temperatureH2O_C) + _H2O_latentHeatOfVaporization(temperatureH2O_C);
+}
+
+/*
+ #10
+ 过热水蒸气的焓值
+ h = h2 + Cp(t-t1)
+ h2 = h1 + r
+ h1 = t1 + 100
+ 
+ t1 为压力p时饱和水蒸气的温度，可利用#05计算 ˚C
+ t 为过热水蒸气的温度即压力p时溶液的平衡温度，可利用#08计算 ˚C
+ h1 为温度为t1时饱和水的焓 kcal/kg
+ h2 为温度为kcal/kg
+ Cp 为过热水蒸气t1-t的定呀平均比热。计算普通单级循环蒸汽焓值时,Cp ≈ 0.46kcal/kg
+ */
+
+double _H2OHeat_enthalpy(double saturationTemperatureH2O_C, double saturationTemperatureLiBr_C){
+    double Cp = 0.46;
+    double t = saturationTemperatureLiBr_C;
+    double t1 = saturationTemperatureH2O_C;
+    double r = _H2O_latentHeatOfVaporization(t1);
+    double h1 = t1 + 100;
+    double h2 = h1 + r;
+    double h = h2 + Cp * (t - t1);
+    h = conversionQ_kCal2kJ(h);
+    return h;
 }
 
 
@@ -133,44 +160,6 @@ double dewTLiBr(double satsaturationTemperatureH2O_C, double concentrationOfLiBr
     return dewTLiBr;
 }
 
-/*计算溴化锂水溶液的焓值（Calculate the enthalpy of LiBr solution）单位：kcal/kg;
- 
- solutionTemperatureLiBr_C: 溴化锂溶液的温度，˚C
- concentrationOfLiBrSolution :100kg 溴化锂水溶液中含有溴化锂的千克数
- 
- 
-    solutionTemperatureLiBr_C ≤ 200 ˚C
- 30% < concentrationOfLiBrSolution < 75%
- 
- 1千卡(kcal)=1大卡=4.184千焦(kJ)
- 测试数据：
- t = 45.83
- x = 58.998
- h = 282.773
- */
-double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentrationOfLiBrSolution){
-    double a[] = {3.22313e2,3.83413e2,-2.65438e3,2.87262e3};
-    double b[] = {4.19928,-9.39005,1.60770e1,-1.36171e1};
-    double c[] = {1.00479e-3,-1.41857e-3,-2.06186e-3,5.92438e-3};
-    double sum1 = 0.00000000 , sum2 = 0.0000000 , sum3 = 0.0000000;
-    double t = solutionTemperatureLiBr_C;
-    double x = concentrationOfLiBrSolution/100;
-    double h;
-    /*
-     sum1 = ∑ax^n
-     
-     */
-    for (int i=0; i<4; i++) {
-        sum1 += a[i]*pow(x,i);
-        sum2 += b[i]*pow(x, i);
-        sum3 += c[i]*pow(x, i);
-    }
-    
-    h = sum1 + sum2*t + sum3*t*t;
-    
-    return  h;
-    
-}
 
 /*
  已知溶液的温度t和压强P,确定溶液的浓度X%,平均相对误差0.76%，最大相对误差1.749%
@@ -200,4 +189,44 @@ double _concentration_LiBrSolution(double solutionTemperatureLiBr_C,double press
     x = sum1 + sum2*t + sum3*t*t + sum4*t*t*t;
     
     return x * 100;
+}
+
+/*计算溴化锂水溶液的焓值（Calculate the enthalpy of LiBr solution）单位：kcal/kg;
+ 
+ solutionTemperatureLiBr_C: 溴化锂溶液的温度，˚C
+ concentrationOfLiBrSolution :100kg 溴化锂水溶液中含有溴化锂的千克数
+ 
+ 
+ solutionTemperatureLiBr_C ≤ 200 ˚C
+ 30% < concentrationOfLiBrSolution < 75%
+ 
+ 1千卡(kcal)=1大卡=4.184千焦(kJ)
+ 测试数据：
+ t = 45.83
+ x = 58.998
+ h = 282.773
+ */
+double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentrationOfLiBrSolution){
+    double a[] = {3.22313e2,3.83413e2,-2.65438e3,2.87262e3};
+    double b[] = {4.19928,-9.39005,1.60770e1,-1.36171e1};
+    double c[] = {1.00479e-3,-1.41857e-3,-2.06186e-3,5.92438e-3};
+    double sum1 = 0.00000000 , sum2 = 0.0000000 , sum3 = 0.0000000;
+    double t = solutionTemperatureLiBr_C;
+    double x = concentrationOfLiBrSolution/100;
+    double h;
+    /*
+     sum1 = ∑ax^n
+     
+     */
+    for (int i=0; i<4; i++) {
+        sum1 += a[i]*pow(x,i);
+        sum2 += b[i]*pow(x, i);
+        sum3 += c[i]*pow(x, i);
+    }
+    
+    h = sum1 + sum2*t + sum3*t*t;
+    
+    h = conversionQ_kCal2kJ(h);
+    
+    return  h;
 }

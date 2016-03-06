@@ -37,6 +37,9 @@ double _H2O_enthalpy(double temperatureH2O_C);
 //水蒸气的焓值
 double _H2OVapor_enthalpy(double temperatureH2O_C);
 
+//过热水蒸气的焓值
+double _H2OHeat_enthalpy(double saturationTemperatureH2O_C, double saturationTemperatureLiBr_C);
+
 //计算溴化锂溶液露点温度
 double dewTLiBr(double satsaturationTemperatureH2O_C, double concentrationOfLiBrSolution);
 
