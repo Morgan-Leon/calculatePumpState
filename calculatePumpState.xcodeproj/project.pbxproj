@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0F3B811C8CB5170024E3E2 /* HeatExchanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C0F3B7F1C8CB5170024E3E2 /* HeatExchanger.cpp */; };
 		3CB8D9061BF88F7A00A94E71 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D9051BF88F7A00A94E71 /* main.cpp */; };
 		3CB8D9141BF8912F00A94E71 /* Evaporator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D9121BF8912F00A94E71 /* Evaporator.cpp */; };
 		3CB8D9181BF89C7F00A94E71 /* Formular.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D9161BF89C7F00A94E71 /* Formular.cpp */; };
@@ -29,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C0F3B7F1C8CB5170024E3E2 /* HeatExchanger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeatExchanger.cpp; sourceTree = "<group>"; };
+		3C0F3B801C8CB5170024E3E2 /* HeatExchanger.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeatExchanger.hpp; sourceTree = "<group>"; };
 		3CB8D9021BF88F7A00A94E71 /* calculatePumpState */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = calculatePumpState; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB8D9051BF88F7A00A94E71 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3CB8D9121BF8912F00A94E71 /* Evaporator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Evaporator.cpp; sourceTree = "<group>"; };
@@ -56,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C0F3B821C8CB5930024E3E2 /* heatExchanger */ = {
+			isa = PBXGroup;
+			children = (
+				3C0F3B7F1C8CB5170024E3E2 /* HeatExchanger.cpp */,
+				3C0F3B801C8CB5170024E3E2 /* HeatExchanger.hpp */,
+			);
+			name = heatExchanger;
+			sourceTree = "<group>";
+		};
 		3CB8D8F91BF88F7A00A94E71 = {
 			isa = PBXGroup;
 			children = (
@@ -75,8 +87,9 @@
 		3CB8D9041BF88F7A00A94E71 /* calculatePumpState */ = {
 			isa = PBXGroup;
 			children = (
-				3CE2E8FE1BF9D38900797F31 /* LiBrPump */,
 				3CB8D9151BF89C6200A94E71 /* formular */,
+				3CE2E8FE1BF9D38900797F31 /* LiBrPump */,
+				3C0F3B821C8CB5930024E3E2 /* heatExchanger */,
 				3CB8D9111BF8905000A94E71 /* generator */,
 				3CB8D9101BF8902800A94E71 /* condenser */,
 				3CB8D90E1BF8900E00A94E71 /* absorber */,
@@ -197,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CB8D9141BF8912F00A94E71 /* Evaporator.cpp in Sources */,
+				3C0F3B811C8CB5170024E3E2 /* HeatExchanger.cpp in Sources */,
 				3CE2E9011BF9D3A300797F31 /* LiBrPump.cpp in Sources */,
 				3CE2E8FA1BF8E8FE00797F31 /* Condenser.cpp in Sources */,
 				3CE2E8F71BF8E8F500797F31 /* Absorber.cpp in Sources */,
