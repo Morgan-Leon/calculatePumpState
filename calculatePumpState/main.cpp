@@ -14,7 +14,10 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    LiBrPump p;
+    LiBrPump p1;
+    
+//    double x[] = {91.6,32,};
+//    LiBrPump p2 = ;
     
     return 0;
 }
