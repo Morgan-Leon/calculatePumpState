@@ -58,6 +58,10 @@ public:
     
     Generator(double T3o, double P3o, double X2o, double X6i);
     
+    double getX4o();
+    
+    double getH4o();
+    
     void printGenerator();
     
     

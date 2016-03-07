@@ -65,8 +65,16 @@ double Absorber::getX2o(){
     return this->X2o;
 }
 
+double Absorber::getT2o(){
+    return this->T2o;
+}
+
 double Absorber::getX6i(){
     return this->X6i;
+}
+
+double Absorber::getH2o(){
+    return this->H2o;
 }
 
 void Absorber::printAbsorber(){

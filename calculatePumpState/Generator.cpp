@@ -59,6 +59,14 @@ double Generator::calH5i(double t, double x){
     return enthalpyLiBrSolution(t, x);
 }
 
+double Generator::getX4o(){
+    return this->X4o;
+}
+
+double Generator::getH4o(){
+    return this->H4o;
+}
+
 void Generator::printGenerator(){
     cout << "\t发生器状态参数如下所示:" <<endl;
     

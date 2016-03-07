@@ -14,6 +14,7 @@
 #include "Absorber.hpp"
 #include "Condenser.hpp"
 #include "Generator.hpp"
+#include "HeatExchanger.hpp"
 
 /*
   ∆: /'delta/
@@ -48,22 +49,23 @@ private:
     //吸收器进口浓溶液与稀溶液间的浓度差(XH-XL) = 0.03至0.06
     double deltaX_a = 0.04;
     
-    
     //冷凝器出口水温要略高于二次水出口，其大小由冷凝管决定（3-5˚C）
     double deltaT_c = 5;
+    
+    //T8o 与冷端(T2o)温差通常控制在5˚C以上（5-25˚C），即∆T_h = 17（5至25之间）
+    double deltaT_h = 17;
     
     Evaporator e;
     Absorber a;
     Condenser c;
     Generator g;
+    HeatExchanger h;
     
     double calDeltaT_w();
     double calDeltaT_w1();
     double calDeltaT_w2();
     
     double calPressrueOfAbsorber(double p1o,double deltaP_e);
-    
-    
     
 public:
     

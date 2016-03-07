@@ -30,10 +30,16 @@ LiBrPump::LiBrPump(){
     cout <<"\n冷凝器构建成功" <<endl;
     c.printCondenser();
     
-    //构造蒸发器需要吸收器入口温度浓度和冷凝器出口温度
+    //构造发生器需要吸收器入口温度浓度和冷凝器出口温度
     this->g = Generator(c.getT3o(),c.getP3o(),a.getX2o(),a.getX6i());
     cout <<"\n发生器构建成功" <<endl;
     g.printGenerator();
+    
+    
+    //构造溶液热交换器需要吸收器稀溶液出口温度和浓度以及发生器浓溶液出口浓度
+    this->h = HeatExchanger(a.getT2o(),a.getX2o(), g.getX4o(),g.getH4o(),a.getH2o());
+    cout <<"\n溶液热交换器构造成功" <<endl;
+    h.printHeatExchanger();
     
 }
 
