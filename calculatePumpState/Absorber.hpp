@@ -39,7 +39,7 @@ private:
     double deltaT_a = 6;
     
     //再循环倍率（circulationRate） f = M/(ML-MH) 即单位质量流量的水蒸气需要稀溶液的质量流量
-    double circulationRate = 30;
+    double circulationRate_a = 30;
     
     double T2o,P2o,H2o,X2o;
     double T6i,P6i,H6i,X6i;

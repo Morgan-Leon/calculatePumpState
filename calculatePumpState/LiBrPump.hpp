@@ -55,6 +55,13 @@ private:
     //T8o 与冷端(T2o)温差通常控制在5˚C以上（5-25˚C），即∆T_h = 17（5至25之间）
     double deltaT_h = 17;
     
+    //XH:溴化锂浓溶液浓度 XL:溴化锂稀溶液浓度
+    double XH, XL;
+    
+    //循环倍率（circulationRate）：a = XH/(XH-XL)
+    double circulationRate;
+    
+    
     Evaporator e;
     Absorber a;
     Condenser c;
@@ -65,11 +72,16 @@ private:
     double calDeltaT_w1();
     double calDeltaT_w2();
     
+    //计算循环倍率
+    double calCirculationRate(double XL, double XH);
+    
     double calPressrueOfAbsorber(double p1o,double deltaP_e);
     
 public:
     
     LiBrPump();
+    
+    double getCirculationRate();
 
     //设置吸收器和冷凝器的温差比
     void set_tdrAC(double a,double b);

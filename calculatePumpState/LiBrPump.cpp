@@ -35,9 +35,13 @@ LiBrPump::LiBrPump(){
     cout <<"\n发生器构建成功" <<endl;
     g.printGenerator();
     
+    this->XL = a.getX2o();
+    this->XH = g.getX4o();
+    
+    this->circulationRate = calCirculationRate(XL, XH);
     
     //构造溶液热交换器需要吸收器稀溶液出口温度和浓度以及发生器浓溶液出口浓度
-    this->h = HeatExchanger(a.getT2o(),a.getX2o(), g.getX4o(),g.getH4o(),a.getH2o());
+    this->h = HeatExchanger(a.getT2o(),XL, XH, g.getH4o(),a.getH2o());
     cout <<"\n溶液热交换器构造成功" <<endl;
     h.printHeatExchanger();
     
@@ -55,8 +59,16 @@ double LiBrPump::calDeltaT_w2(){
     return deltaT_w*c_tdr;
 };
 
+double LiBrPump::calCirculationRate(double XL, double XH){
+    return XH / (XH - XL);
+}
+
 double LiBrPump::calPressrueOfAbsorber(double p1o,double deltaP_e){
     return p1o-(deltaP_e/1000);
+}
+
+double LiBrPump::getCirculationRate(){
+    return this->circulationRate;
 }
 
 void LiBrPump::set_tdrAC(double a,double b){
