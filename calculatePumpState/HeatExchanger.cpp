@@ -11,7 +11,9 @@
 HeatExchanger::HeatExchanger(){
 };
 
-HeatExchanger::HeatExchanger(double T2o, double X2o, double X4o, double H4o, double H2o){
+HeatExchanger::HeatExchanger(double T2o, double X2o, double X4o, double H4o, double H2o, double deltaT_h){
+    
+    setDeltaT_h(deltaT_h);
     
     this->XL = X2o;
     this->XH = X4o;
@@ -38,6 +40,10 @@ double HeatExchanger::calH8o(double t, double x){
 
 double HeatExchanger::calH7o(double h4, double h2){
     return (h4-this->H8o) * (this->XL / this->XH) + h2;
+}
+
+void HeatExchanger::setDeltaT_h(double h){
+    this->deltaT_h = h;
 }
 
 void HeatExchanger::printHeatExchanger(){

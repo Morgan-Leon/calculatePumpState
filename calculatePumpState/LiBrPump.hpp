@@ -71,9 +71,11 @@ private:
     Generator g;
     HeatExchanger h;
     
-    double calDeltaT_w();
-    double calDeltaT_w1();
-    double calDeltaT_w2();
+//    double calDeltaT_w(double,double);
+//    double calDeltaT_w1(double,double);
+//    double calDeltaT_w2(double,double);
+    
+    void pumpInit(double,double,double,double);
     
     //计算循环倍率
     double calCirculationRate(double XL, double XH);
@@ -96,14 +98,22 @@ public:
     //deltaX_a: 吸收器进口浓溶液与稀溶液间的浓度差(XH-XL) = 0.03至0.06
     //deltaT_c: 冷凝器出口水温要略高于二次水出口，其大小由冷凝管决定（3-5˚C）
     //deltaT_h: T8o 与冷端(T2o)温差通常控制在5˚C以上（5-25˚C），即∆T_h = 17（5至25之间）
-    LiBrPump(double Twai, double Twco, double Twei, double Tweo
+    LiBrPump(double Twai, double Twco, double Twei, double Tweo, double deltaT_e
              ,double a_trd, double c_trd, double deltaT_a
              ,double deltaP_e ,double deltaX_a
              ,double deltaT_c, double deltaT_h);
     
-    double getCirculationRate();
     
-    void pumpInit();
+    //构建一个热泵需要：
+    //Twai: 二次水入口温度
+    //Twco: 二次水出口温度，所制取热水温度
+    //Twei: 低品质热源入口温度
+    //Tweo: 低品质热源出口温度
+    //其他参数为默认状态
+    LiBrPump(double Twai, double Twco, double Twei, double Tweo);
+    
+    double getCirculationRate();
+
 
     //设置吸收器和冷凝器的温差比
     void set_tdrAC(double a,double b);

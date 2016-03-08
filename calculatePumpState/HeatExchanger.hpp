@@ -46,7 +46,7 @@ private:
     
 public:
     HeatExchanger();
-    HeatExchanger(double T2o, double X2o, double X4o, double H4o, double H2o);
+    HeatExchanger(double T2o, double X2o, double X4o, double H4o, double H2o, double deltaT_h);
     
     double calT8o(double);
     double calH8o(double,double);

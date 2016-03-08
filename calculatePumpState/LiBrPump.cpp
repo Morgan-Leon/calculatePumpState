@@ -12,7 +12,7 @@
 
 LiBrPump::LiBrPump(){
     
-    pumpInit();
+    pumpInit(this->Twai, this->Twco, this->a_tdr, this->c_tdr);
 
     this->e = Evaporator(Twei,Tweo,deltaT_e);
     cout << "蒸发器构建成功" << endl;
@@ -39,18 +39,18 @@ LiBrPump::LiBrPump(){
     this->circulationRate = calCirculationRate(XL, XH);
     
     //构造溶液热交换器需要吸收器稀溶液出口温度和浓度以及发生器浓溶液出口浓度
-    this->h = HeatExchanger(a.getT2o(),XL, XH, g.getH4o(),a.getH2o());
+    this->h = HeatExchanger(a.getT2o(),XL, XH, g.getH4o(),a.getH2o(), this->deltaT_h);
     cout <<"\n溶液热交换器构造成功" <<endl;
     h.printHeatExchanger();
     
 }
 
 
-LiBrPump::LiBrPump(double Twai, double Twco, double Twei, double Tweo
-                   ,double a_trd, double c_trd, double deltaT_a
+LiBrPump::LiBrPump(double Twai, double Twco, double Twei, double Tweo, double deltaT_e
+                   ,double a_tdr, double c_tdr, double deltaT_a
                    ,double deltaP_e ,double deltaX_a
                    ,double deltaT_c, double deltaT_h){
-    pumpInit();
+    pumpInit(Twco,Twai,a_tdr,c_tdr);
     
     this->e = Evaporator(Twei,Tweo,deltaT_e);
     cout << "蒸发器构建成功" << endl;
@@ -77,29 +77,37 @@ LiBrPump::LiBrPump(double Twai, double Twco, double Twei, double Tweo
     this->circulationRate = calCirculationRate(XL, XH);
     
     //构造溶液热交换器需要吸收器稀溶液出口温度和浓度以及发生器浓溶液出口浓度
-    this->h = HeatExchanger(a.getT2o(),XL, XH, g.getH4o(),a.getH2o());
+    this->h = HeatExchanger(a.getT2o(),XL, XH, g.getH4o(),a.getH2o(), deltaT_h);
     cout <<"\n溶液热交换器构造成功" <<endl;
     h.printHeatExchanger();
     
 }
 
-void LiBrPump::pumpInit(){
-    this->deltaT_w = calDeltaT_w();
-    this->deltaT_w1 = calDeltaT_w1();
-    this->deltaT_w2 = calDeltaT_w2();
+LiBrPump::LiBrPump(double Twai, double Twco, double Twei, double Tweo){
+    
+    
 }
 
-double LiBrPump::calDeltaT_w(){
-    return Twco - Twai;
+void LiBrPump::pumpInit(double Twai, double Twco, double a_tdr, double c_tdr){
+    
+    this->deltaT_w = Twco - Twai;
+    this->deltaT_w1 = this->deltaT_w*a_tdr;
+    this->deltaT_w2 = this->deltaT_w*c_tdr;
 }
 
-double LiBrPump::calDeltaT_w1(){
-    return  deltaT_w*a_tdr;
-};
-
-double LiBrPump::calDeltaT_w2(){
-    return deltaT_w*c_tdr;
-};
+//double LiBrPump::calDeltaT_w(t1,t2){
+////    return Twco - Twai;
+//    return t2 - t1;
+//}
+//
+//double LiBrPump::calDeltaT_w1(t,r){
+////    return  deltaT_w*a_tdr;
+//    return t*r
+//};
+//
+//double LiBrPump::calDeltaT_w2(deltaT_w,c_tdr){
+//    return deltaT_w*c_tdr;
+//};
 
 double LiBrPump::calCirculationRate(double XL, double XH){
     return XH / (XH - XL);
@@ -116,6 +124,6 @@ double LiBrPump::getCirculationRate(){
 void LiBrPump::set_tdrAC(double a,double b){
     this->a_tdr = a/(a+b);
     this->c_tdr = b/(a+b);
-    this->deltaT_w1 = calDeltaT_w1();
-    this->deltaT_w2 = calDeltaT_w2();
+    this->deltaT_w1 = this->deltaT_w * this->a_tdr;
+    this->deltaT_w2 = this->deltaT_w * this->c_tdr;
 };
