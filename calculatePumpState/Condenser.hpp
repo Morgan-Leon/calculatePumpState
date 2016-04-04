@@ -54,6 +54,9 @@ public:
     
     double getP3o();
     
+    double getH3o();
+    
+    
     void printCondenser();
 };
 

@@ -77,10 +77,34 @@ private:
     
     void pumpInit(double,double,double,double);
     
-    //计算循环倍率
+    //计算循环倍率a
     double calCirculationRate(double XL, double XH);
     
     double calPressrueOfAbsorber(double p1o,double deltaP_e);
+    
+    /*
+        Q_e: 蒸发器吸热量 = h1o - h3o
+        Q_c: 冷凝器放热量 = h4wo - h3o
+        Q_a: 吸收器放热量 = h1o + (a - 1) * h8o - a * h2o
+        Q_g: 发生器耗热量 = (a - 1) * h4o + h4wo - a * h7o
+        Q_ex: 溶液热交换器的换热量 = a * (h7o - h2o)
+     */
+    double Q_e, Q_c, Q_a, Q_g, Q_ex;
+    
+    double calQe();
+    
+    double calQc();
+    
+    double calQa();
+    
+    double calQg();
+    
+    double calQex();
+    
+    //热能效率
+    double cop;
+    
+    double calCOP();
     
 public:
     
@@ -117,6 +141,9 @@ public:
 
     //设置吸收器和冷凝器的温差比
     void set_tdrAC(double a,double b);
+    
+    double getCOP();
+    
     
 };
 

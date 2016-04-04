@@ -60,6 +60,10 @@ public:
     void setXH(double X4o);
     
     void printHeatExchanger();
+    
+    double getH7o();
+    
+    double getH8o();
 
     
 };

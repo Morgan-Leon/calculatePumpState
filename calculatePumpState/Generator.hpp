@@ -62,6 +62,9 @@ public:
     
     double getH4o();
     
+    double getH4wo();
+    
+    
     void printGenerator();
     
     

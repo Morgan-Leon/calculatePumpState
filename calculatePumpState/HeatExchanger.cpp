@@ -52,6 +52,14 @@ void HeatExchanger::setDeltaT_h(double h){
     this->deltaT_h = h;
 }
 
+double HeatExchanger::getH7o(){
+    return this->H7o;
+}
+
+double HeatExchanger::getH8o(){
+    return this->H8o;
+}
+
 void HeatExchanger::printHeatExchanger(){
     cout << "\t溶液热交换器状态参数如下所示:\n";
     

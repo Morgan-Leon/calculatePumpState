@@ -67,6 +67,10 @@ double Generator::getH4o(){
     return this->H4o;
 }
 
+double Generator::getH4wo(){
+    return this->H4wo;
+}
+
 void Generator::printGenerator(){
     cout << "\t发生器状态参数如下所示:" <<endl;
     

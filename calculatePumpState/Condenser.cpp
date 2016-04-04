@@ -48,6 +48,11 @@ double Condenser::getT3o(){
     return this->T3o;
 }
 
+double Condenser::getH3o(){
+    return this->H3o;
+}
+
+
 void Condenser::printCondenser(){
     
     cout << "\t冷凝器状态参数如下所示:" <<endl;

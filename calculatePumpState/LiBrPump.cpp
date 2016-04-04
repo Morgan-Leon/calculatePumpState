@@ -43,6 +43,8 @@ LiBrPump::LiBrPump(){
     cout <<"\n溶液热交换器构造成功" <<endl;
     h.printHeatExchanger();
     
+    calCOP();
+    
 }
 
 
@@ -81,12 +83,20 @@ LiBrPump::LiBrPump(double Twai, double Twco, double Twei, double Tweo, double de
     cout <<"\n溶液热交换器构造成功" <<endl;
     h.printHeatExchanger();
     
+    this->circulationRate = calCirculationRate(XL, XH);
+    
+    calCOP();
+    
 }
 
 LiBrPump::LiBrPump(double Twai, double Twco, double Twei, double Tweo){
     
     
 }
+
+/*
+ 吸收器和冷凝器 二次水温差
+*/
 
 void LiBrPump::pumpInit(double Twai, double Twco, double a_tdr, double c_tdr){
     
@@ -110,7 +120,8 @@ void LiBrPump::pumpInit(double Twai, double Twco, double a_tdr, double c_tdr){
 //};
 
 double LiBrPump::calCirculationRate(double XL, double XH){
-    return XH / (XH - XL);
+    this->circulationRate = XH / (XH - XL);
+    return this->circulationRate;
 }
 
 double LiBrPump::calPressrueOfAbsorber(double p1o,double deltaP_e){
@@ -127,3 +138,47 @@ void LiBrPump::set_tdrAC(double a,double b){
     this->deltaT_w1 = this->deltaT_w * this->a_tdr;
     this->deltaT_w2 = this->deltaT_w * this->c_tdr;
 };
+
+double LiBrPump::calQe(){
+    this->Q_e = e.getH1o() - c.getH3o();
+    return this->Q_e;
+}
+
+double LiBrPump::calQc(){
+    this->Q_c = g.getH4wo() - c.getH3o();
+    return this->Q_c;
+}
+
+double LiBrPump::calQa(){
+    double a = getCirculationRate();
+    this->Q_a = e.getH1o() + (a - 1) * h.getH8o() - a * this->a.getH2o();
+    return this->Q_a;
+}
+
+double LiBrPump::calQg(){
+    double a = getCirculationRate();
+    this->Q_g = (a - 1) * g.getH4o() + g.getH4wo() - a * h.getH7o();
+    return this->Q_g;
+}
+
+double LiBrPump::calQex(){
+    double a = getCirculationRate();
+    this->Q_ex = a * (h.getH7o() - this->a.getH2o());
+    return this->Q_ex;
+}
+
+double LiBrPump::calCOP(){
+    calQa();
+    calQc();
+    calQe();
+    calQex();
+    calQg();
+    cout << "Qg + Qe = " << Q_g + Q_e << endl;
+    cout << "Qc + Qa = " << Q_c + Q_a << endl;
+    this->cop = (Q_c + Q_a) / Q_g;
+    cout << cop <<endl;
+    return cop;
+}
+
+
+
