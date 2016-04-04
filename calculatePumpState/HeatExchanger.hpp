@@ -53,6 +53,8 @@ public:
     
     double calH7o(double h4, double h2);
     
+    double calT7o(double H7o, double X7o);
+    
     void setDeltaT_h(double);
     void setXL(double X2o);
     void setXH(double X4o);

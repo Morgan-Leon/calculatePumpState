@@ -227,3 +227,30 @@ double enthalpyLiBrSolution(double solutionTemperatureLiBr_C,double concentratio
     
     return  h;
 }
+
+/*计算溴化锂水溶液的温度（根据焓值和浓度）
+  H = A + B * t + C * t^2  ( 公式来自于《溴化锂溶液鼻鼾分析》--王磊，陆震)
+  对温度t的求解即为 解 一元二次方程 A + B * t + C * t^2  - H = 0
+  亦可用牛顿下山法求解。
+ */
+double temperaturLiBrSolution(double enthalpyLiBrSolution, double concentrationOfLiBrSolution){
+    double h = enthalpyLiBrSolution;
+    double x = concentrationOfLiBrSolution;
+    double a[] = {3.22313e2,3.83413e2,-2.65438e3,2.87262e3};
+    double b[] = {4.19928,-9.39005,1.60770e1,-1.36171e1};
+    double c[] = {1.00479e-3,-1.41857e-3,-2.06186e-3,5.92438e-3};
+    double sum1 = 0.00000000 , sum2 = 0.0000000 , sum3 = 0.0000000;
+    x = x / 100;
+    
+    for (int i=0; i<4; i++) {
+        sum1 += a[i]*pow(x,i);
+        sum2 += b[i]*pow(x, i);
+        sum3 += c[i]*pow(x, i);
+    }
+    
+    double t ;
+    
+    t = ( sqrt(sum2*sum2 - 4 * sum3 * (sum1 - h)) - sum2 ) / (2 * sum3);
+    return  t;
+    
+}

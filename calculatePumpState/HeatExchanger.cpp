@@ -27,6 +27,8 @@ HeatExchanger::HeatExchanger(double T2o, double X2o, double X4o, double H4o, dou
     
     this->H7o = calH7o(H4o, H2o);
     
+    this->T7o = calT7o(H7o, X7o);
+    
 };
 
 
@@ -40,6 +42,10 @@ double HeatExchanger::calH8o(double t, double x){
 
 double HeatExchanger::calH7o(double h4, double h2){
     return (h4-this->H8o) * (this->XL / this->XH) + h2;
+}
+
+double HeatExchanger::calT7o(double H7o, double X7o){
+    return temperaturLiBrSolution(H7o, X7o);
 }
 
 void HeatExchanger::setDeltaT_h(double h){
@@ -57,7 +63,7 @@ void HeatExchanger::printHeatExchanger(){
     cout << "\t    ∆T_h = "<<deltaT_h<<"˚C"<<endl;
     
     cout << "\t  求得:" <<endl;
-//    cout << "\t    T7o = " <<T7o<<"˚C" <<endl;
+    cout << "\t    T7o = " <<T7o<<"˚C" <<endl;
     cout << "\t    P7o = " <<"--" <<endl;
     cout << "\t    H7o = " <<H7o<<"kJ/kg" <<endl;
     cout << "\t    X7o = " <<X7o<<"%" <<endl;
