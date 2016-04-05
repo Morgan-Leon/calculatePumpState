@@ -176,7 +176,7 @@ double LiBrPump::calCOP(){
     cout << "Qg + Qe = " << Q_g + Q_e << endl;
     cout << "Qc + Qa = " << Q_c + Q_a << endl;
     this->cop = (Q_c + Q_a) / Q_g;
-    cout << cop <<endl;
+    cout << "COP = " <<cop <<endl;
     return cop;
 }
 
